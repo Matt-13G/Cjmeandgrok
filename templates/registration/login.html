@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}ورود{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 420px; margin: 60px auto;">
+    <h2>ورود به پنل</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-bottom: 15px;">
+            <label>نام کاربری</label><br>
+            <input type="text" name="username" required style="width: 100%; padding: 10px; margin-top: 5px;">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label>رمز عبور</label><br>
+            <input type="password" name="password" required style="width: 100%; padding: 10px; margin-top: 5px;">
+        </div>
+        <button type="submit" class="btn" style="width: 100%;">ورود</button>
+    </form>
+</div>
+{% endblock %}

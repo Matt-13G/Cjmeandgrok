@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<h1>پروفایل محصول: {{ product.name }}</h1>
+
+<div class="card">
+    <p><strong>کد محصول:</strong> {{ product.code }}</p>
+    <p><strong>دسته‌بندی:</strong> {{ product.category }}</p>
+    <p><strong>موجودی فعلی:</strong> {{ product.current_stock }}</p>
+    <p><strong>قیمت فروش:</strong> {{ product.sale_price }} تومان</p>
+    <p><strong>هزینه تولید:</strong> {{ product.production_cost }} تومان</p>
+    <p><strong>حاشیه سود:</strong> {{ product.profit_margin|floatformat:1 }}٪</p>
+    <p><strong>امتیاز محبوبیت:</strong> {{ product.popularity_score }}</p>
+    <p><strong>وضعیت:</strong> {% if product.is_active %}فعال{% else %}غیرفعال{% endif %}</p>
+</div>
+
+<a href="{% url 'dashboard' %}" class="btn">بازگشت به داشبورد</a>
+{% endblock %}

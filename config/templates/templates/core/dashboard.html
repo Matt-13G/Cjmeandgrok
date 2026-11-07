@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}داشبورد{% endblock %}
+
+{% block content %}
+<h1>داشبورد مدیریت</h1>
+
+<div class="stats">
+    <div class="stat-box">
+        <h3>تعداد محصولات</h3>
+        <p>{{ total_products }}</p>
+    </div>
+    <div class="stat-box">
+        <h3>محصولات فعال</h3>
+        <p>{{ active_products }}</p>
+    </div>
+    <div class="stat-box">
+        <h3>موجودی کم</h3>
+        <p>{{ low_stock_count }}</p>
+    </div>
+    <div class="stat-box">
+        <h3>فروش امروز</h3>
+        <p>{{ today_sales }}</p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>آخرین محصولات</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>نام محصول</th>
+                <th>کد</th>
+                <th>موجودی</th>
+                <th>قیمت فروش</th>
+                <th>وضعیت</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
+                <td>{{ product.code }}</td>
+                <td>{{ product.current_stock }}</td>
+                <td>{{ product.sale_price }}</td>
+                <td>{% if product.is_active %}فعال{% else %}غیرفعال{% endif %}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">هنوز محصولی ثبت نشده است.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
